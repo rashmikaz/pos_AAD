@@ -1,5 +1,8 @@
 package dao.impl;
 
+import dao.custom.OrderDetailDAO;
+import entity.OrderDetail;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -34,4 +37,3 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
         return false;
     }
 }
-

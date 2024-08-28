@@ -1,10 +1,20 @@
 package bo.impl;
 
+
+import bo.custom.OrderBO;
+import dao.DAOFactory;
+import dao.custom.OrderDAO;
+import dao.custom.OrderDetailDAO;
+import dto.OrderDTO;
+import dto.OrderDetailDTO;
+import entity.Order;
+import entity.OrderDetail;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderBOImpl {
+public class OrderBOImpl implements OrderBO {
     OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ORDER);
     OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ORDER_DETAIL);
     @Override
@@ -14,7 +24,7 @@ public class OrderBOImpl {
 
             // Save the order
             boolean orderSaved = orderDAO.save(
-                    new Order(orderDTO.getOrderId(),orderDTO.getOrderDate(),orderDTO.getCustomerId(), orderDTO.getTotalAmount()),
+                    new Order(),
                     connection);
             if (!orderSaved) {
                 connection.rollback();

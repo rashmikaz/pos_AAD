@@ -1,11 +1,18 @@
 package bo.impl;
 
+import bo.custom.CustomerBO;
+import dao.DAOFactory;
+import dao.custom.CustomerDAO;
+import dto.CustomerDTO;
+import entity.Customer;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerBOImpl {
+public class CustomerBOImpl implements CustomerBO {
+
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.CUSTOMER);
     @Override
     public boolean saveCustomer(CustomerDTO dto, Connection connection) throws SQLException {

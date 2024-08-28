@@ -1,6 +1,9 @@
 package dao.impl;
 
 
+import dao.custom.ItemDAO;
+import entity.Item;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,11 +1,17 @@
 package bo.impl;
 
+import bo.custom.ItemBO;
+import dao.DAOFactory;
+import dao.custom.ItemDAO;
+import dto.ItemDTO;
+import entity.Item;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBOImpl {
+public class ItemBOImpl implements ItemBO {
     ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ITEM);
     @Override
     public boolean saveItem(ItemDTO dto, Connection connection) throws SQLException {

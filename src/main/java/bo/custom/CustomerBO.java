@@ -1,10 +1,13 @@
 package bo.custom;
 
+import bo.SuperBO;
+import dto.CustomerDTO;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CustomerBO {
+public interface CustomerBO extends SuperBO {
     boolean saveCustomer(CustomerDTO dto, Connection connection) throws SQLException;
 
     boolean updateCustomer(String customerId,CustomerDTO customerDTO,Connection connection);

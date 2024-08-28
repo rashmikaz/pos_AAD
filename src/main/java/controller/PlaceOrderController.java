@@ -1,11 +1,19 @@
 package controller;
 
 
+import bo.BOFactory;
+import bo.custom.OrderBO;
+import dto.OrderDTO;
+import dto.OrderDetailDTO;
+import dto.OrderRequestDTO;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.LoggerFactory;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -14,11 +22,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/order")
 public class PlaceOrderController extends HttpServlet {
     OrderBO orderBO = (OrderBO) BOFactory.getBOFactory().getBo(BOFactory.BOTypes.ORDER);
-    static Logger logger = LoggerFactory.getLogger(ItemController.class);
+    static Logger logger = (Logger) LoggerFactory.getLogger(ItemController.class);
     Connection connection;
 
     @Override
@@ -29,7 +39,7 @@ public class PlaceOrderController extends HttpServlet {
             DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/posSystem");
             this.connection = pool.getConnection();
         } catch (NamingException | SQLException e) {
-            logger.error("Init failed with", e.getMessage());
+            logger.log(Level.parse("Init failed with"), e.getMessage());
             throw new RuntimeException(e);
         }
     }
